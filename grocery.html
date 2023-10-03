@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GROCERY LIST</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      body {
+        display: flex;
+        background: linear-gradient(45deg, #aa11c5, #3f75eb);
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .box1 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        background: #fff;
+        padding: 20px;
+        width: 600px;
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
+      }
+      .form {
+        width: 100%;
+        display: flex;
+      }
+      .box1 h2 {
+        font-size: 1.75rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+        color: #333;
+      }
+      .box1 .form input {
+        padding: 10px;
+        border: 1px solid #333;
+        outline: none;
+        border-radius: 3px;
+        width: 100%;
+      }
+      .box1 .form input:focus {
+        border: 3px solid #ccc;
+      }
+      .box1 .form button {
+        min-width: 100px;
+        border: 1px solid #333;
+        cursor: pointer;
+        color: #fff;
+        background: #3f44e2;
+      }
+      .box1 .form button:hover {
+        background: #2f3e;
+      }
+      ol {
+        width: 100%;
+        min-height: 400px;
+        padding: 10px 20px 10px 40px;
+        background: #fff;
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
+      }
+      .xyz {
+        width: 100%;
+        height: max-content;
+        border-bottom: 1px solid #333;
+        background: #3f44e2;
+        margin-bottom: 5px;
+        padding: 8px 20px 8px 20px;
+        gap: 50%;
+        justify-content: center;
+        color: #ccc;
+      }
+      .abc {
+        padding: 5px;
+        float: right;
+        min-width: 100px;
+        border: 1px solid #333;
+        cursor: pointer;
+        color: #333;
+        background: #2f3e;
+        padding-bottom: 3px;
+      }
+      .abc:hover {
+        color: #fff;
+        background: #ce2c7a;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box1">
+        <h2>Grocery List</h2>
+
+        <div class="form">
+          <input type="text" placeholder="Add any item" id="inputVal" required />
+          <button id="btn">Add Item</button>
+        </div>
+      </div>
+
+      <ol id="list"></ol>
+    </main>
+
+    <script>
+      var inputValue = document.querySelector("#inputVal");
+      var button = document.querySelector("#btn");
+      var list = document.querySelector("#list");
+     var key = "key";
+     
+     // let's add <li> tag to <ol> tag and <button> tag to <li> tag
+      button.addEventListener("click", () => {
+        console.log(inputValue.value);
+        
+        var a = document.createElement("li");
+        console.log(a);
+        list.appendChild(a);
+        a.classList.add("xyz");
+        var b = document.createTextNode(inputValue.value);
+        a.appendChild(b);
+        var c = document.createElement("button");
+        a.appendChild(c);
+        var d = document.createTextNode("Remove");
+        c.appendChild(d);
+        c.classList.add("abc");
+        localStorage.setItem(key,inputValue.value);
+        c.addEventListener("click", () => {
+          a.style.display = "none";
+          localStorage.removeItem(key,inputValue.value)
+        });
+        inputValue.value='';
+      });
+    </script>
+  </body>
+</html>
